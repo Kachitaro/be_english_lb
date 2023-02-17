@@ -17,13 +17,15 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
-import {Student} from '../models';
-import {StudentRepository} from '../repositories';
+import {Student, Users} from '../models';
+import {StudentRepository, UsersRepository} from '../repositories';
 
 export class StudentController {
   constructor(
     @repository(StudentRepository)
     public studentRepository : StudentRepository,
+    @repository(UsersRepository)
+    public usersRepository : UsersRepository,
   ) {}
 
   @post('/students')
@@ -37,14 +39,18 @@ export class StudentController {
         'application/json': {
           schema: getModelSchemaRef(Student, {
             title: 'NewStudent',
-
           }),
         },
       },
     })
     student: Student,
   ): Promise<Student> {
-    return this.studentRepository.create(student);
+    const user = new Users({
+      username: student?.email,
+    })
+    const newUser = await this.usersRepository.create(user)
+    const NewStudent = {...student,studentId: newUser.id }
+    return this.studentRepository.create(NewStudent);
   }
 
   @get('/students/count')

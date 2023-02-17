@@ -56,11 +56,7 @@ export class Student extends Entity {
   @property({
     type: 'date',
     name: 'created_at',
-    default: () => {
-      const d = new Date();
-      d.setDate(d.getDate());
-      return d;
-    },
+    default: Date()
   })
   createdAt?: Date;
 
@@ -68,11 +64,7 @@ export class Student extends Entity {
   @property({
     name: 'updated_at',
     type: 'date',
-    default: () => {
-      const d = new Date();
-      d.setDate(d.getDate());
-      return d;
-    },
+    default: Date()
   })
   updatedAt?: Date;
 

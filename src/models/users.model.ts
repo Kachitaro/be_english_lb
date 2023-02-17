@@ -24,30 +24,22 @@ export class Users extends Entity {
   @property({
     type: 'date',
     name: 'created_at',
-    default: () => {
-      const d = new Date();
-      d.setDate(d.getDate());
-      return d;
-    },
+    default: Date()
   })
   createdAt?: Date;
 
   @property({
     name: 'updated_at',
     type: 'date',
-    default: () => {
-      const d = new Date();
-      d.setDate(d.getDate());
-      return d;
-    },
+    default: Date()
   })
   updatedAt?: Date;
 
   @belongsTo(() => Student)
-  studentId: number;
+  studentId?: number;
 
   @belongsTo(() => Manager)
-  managerId: number;
+  managerId?: number;
 
   constructor(data?: Partial<Users>) {
     super(data);
