@@ -9,7 +9,7 @@ const config = {
   port: 5432,
   user: 'postgres',
   password: 'postgres123',
-  database: 'englishcenter_management'
+  database: 'manager'
 };
 
 // Observe application's life cycle to disconnect the datasource when

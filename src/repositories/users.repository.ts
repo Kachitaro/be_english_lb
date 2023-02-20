@@ -1,9 +1,9 @@
-import {inject, Getter} from '@loopback/core';
-import {PgDataSource} from '../datasources';
-import {DefaultCrudRepository, repository, BelongsToAccessor} from '@loopback/repository';
-import {Users, UsersRelations, Student, Manager} from '../models';
-import {StudentRepository} from './student.repository';
-import {ManagerRepository} from './manager.repository';
+import { Getter, inject } from '@loopback/core';
+import { BelongsToAccessor, DefaultCrudRepository, repository } from '@loopback/repository';
+import { PgDataSource } from '../datasources';
+import { Manager, Student, Users, UsersRelations } from '../models';
+import { ManagerRepository } from './manager.repository';
+import { StudentRepository } from './student.repository';
 
 export class UsersRepository extends DefaultCrudRepository<
   Users,

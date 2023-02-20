@@ -1,7 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class Users extends Entity {
+export class Subjects extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -10,14 +10,27 @@ export class Users extends Entity {
   id?: number;
 
   @property({
-    type: 'string',
+    type:'string'
   })
-  username?: string;
+  name?: string;
+
+  // @belongsTo(() => Teacher)
+  // teacherId?: number;
 
   @property({
-    type: 'string',
+    type: 'date',
+    name: 'start_at',
+    defaultFn: 'now'
   })
-  password?: string;
+  StartAt?: Date;
+
+  @property({
+    name: 'end_at',
+    type: 'date',
+    defaultFn: 'now'
+  })
+  EndAt?: Date;
+
 
   @property({
     type: 'date',
@@ -33,13 +46,13 @@ export class Users extends Entity {
   })
   updatedAt?: Date;
 
-  constructor(data?: Partial<Users>) {
+  constructor(data?: Partial<Subjects>) {
     super(data);
   }
 }
 
-export interface UsersRelations {
+export interface SubjectsRelations {
   // describe navigational properties here
 }
 
-export type UsersWithRelations = Users & UsersRelations;
+export type SubjectsWithRelations = Subjects & SubjectsRelations;

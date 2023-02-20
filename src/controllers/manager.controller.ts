@@ -1,51 +1,53 @@
+
 import {
   Count,
   CountSchema,
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  //post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
-import {Manager} from '../models';
-import {ManagerRepository} from '../repositories';
+import {Manager, Users} from '../models';
+import {ManagerRepository, UsersRepository} from '../repositories';
 
 export class ManagerController {
   constructor(
     @repository(ManagerRepository)
     public managerRepository : ManagerRepository,
+    @repository(UsersRepository)
+    public usersRepository : UsersRepository,
   ) {}
 
-  // @post('/managers')
-  // @response(200, {
-  //   description: 'Manager model instance',
-  //   content: {'application/json': {schema: getModelSchemaRef(Manager)}},
-  // })
-  // async create(
-  //   @requestBody({
-  //     content: {
-  //       'application/json': {
-  //         schema: getModelSchemaRef(Manager, {
-  //           title: 'NewManager',
-  //           exclude: ['id'],
-  //         }),
-  //       },
-  //     },
-  //   })
-  //   manager: Omit<Manager, 'id'>,
-  // ): Promise<Manager> {
-  //   return this.managerRepository.create(manager);
-  // }
+  @post('/managers')
+  @response(200, {
+    description: 'Manager model instance',
+    content: {'application/json': {schema: getModelSchemaRef(Manager)}},
+  })
+  async create(
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(Manager, {
+            title: 'NewManager',
+            exclude: ['id'],
+          }),
+        },
+      },
+    })
+    manager: Omit<Manager, 'id'>,
+  ): Promise<Manager> {
+    const user = new Users({
+      username: manager?.email,
+    })
+    const newUser = await this.usersRepository.create(user)
+    const NewManager = {...manager, managerId: newUser.id}
+    return this.managerRepository.create(NewManager);
+  }
 
   @get('/managers/count')
   @response(200, {

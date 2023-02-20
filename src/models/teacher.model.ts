@@ -1,8 +1,7 @@
-// import { Users } from './users.model';
-import { Entity, model, property} from '@loopback/repository';
+import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class Manager extends Entity {
+export class Teacher extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -41,9 +40,11 @@ export class Manager extends Entity {
   })
   address?: string;
 
-  //
-  // @belongsTo(() => Users)
-  // managerId?: number;
+  @property({
+    name:'teacher_id',
+    type: 'number',
+  })
+  teacherId?: number;
 
   @property({
     type: 'number',
@@ -64,13 +65,13 @@ export class Manager extends Entity {
   })
   updatedAt?: Date;
 
-  constructor(data?: Partial<Manager>) {
+  constructor(data?: Partial<Teacher>) {
     super(data);
   }
 }
 
-export interface ManagerRelations {
+export interface TeacherRelations {
   // describe navigational properties here
 }
 
-export type ManagerWithRelations = Manager & ManagerRelations;
+export type TeacherWithRelations = Teacher & TeacherRelations;

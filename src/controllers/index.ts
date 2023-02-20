@@ -3,3 +3,7 @@ export * from './users.controller';
 export * from './manager.controller';
 export * from './users-student.controller';
 export * from './users-manager.controller';
+export * from './center-branch.controller';
+export * from './subjects.controller';
+export * from './teacher.controller';
+export * from './tuition.controller';

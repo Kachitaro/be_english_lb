@@ -1,7 +1,7 @@
-import {inject} from '@loopback/core';
-import {DefaultCrudRepository} from '@loopback/repository';
-import {PgDataSource} from '../datasources';
-import {Student, StudentRelations} from '../models';
+import { inject } from '@loopback/core';
+import { DefaultCrudRepository } from '@loopback/repository';
+import { PgDataSource } from '../datasources';
+import { Student, StudentRelations } from '../models';
 
 export class StudentRepository extends DefaultCrudRepository<
   Student,

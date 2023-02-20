@@ -1,4 +1,5 @@
-import { Entity, model, property} from '@loopback/repository';
+
+import {Entity, model, property } from '@loopback/repository';
 
 @model()
 export class Student extends Entity {
@@ -8,11 +9,6 @@ export class Student extends Entity {
     generated: true,
   })
   id?: number;
-
-  @property({
-    type: 'string',
-  })
-  code?: string;
 
   @property({
     type: 'string',
@@ -45,18 +41,25 @@ export class Student extends Entity {
   })
   schedule?: string;
 
-  @property({
-    name: 'subjects_id',
-    type: 'number',
-    // type: 'array',
-  })
-  //subjectsId: number[];
-  subjectsId?: number;
+  // @property({
+  //   name: 'subjects_id',
+  //   type: 'number',
+  // })
+  // subjectsId?: number;
+
+  // @property({
+  //   name: 'student_id',
+  //   type: 'number',
+  // })
+  // studentId?: number;
+  // @belongsTo(() => Users)
+  // studentId?: number;
+
 
   @property({
     type: 'date',
     name: 'created_at',
-    default: Date()
+    defaultFn: 'now'
   })
   createdAt?: Date;
 
@@ -64,15 +67,9 @@ export class Student extends Entity {
   @property({
     name: 'updated_at',
     type: 'date',
-    default: Date()
+    defaultFn: 'now'
   })
   updatedAt?: Date;
-
-  @property({
-    name: 'student_id',
-    type: 'number',
-  })
-  studentId?: number;
 
   constructor(data?: Partial<Student>) {
     super(data);

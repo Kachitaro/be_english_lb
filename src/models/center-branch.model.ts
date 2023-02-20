@@ -1,7 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class Users extends Entity {
+export class CenterBranch extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -12,17 +12,23 @@ export class Users extends Entity {
   @property({
     type: 'string',
   })
-  username?: string;
+  name?: string;
 
   @property({
     type: 'string',
   })
-  password?: string;
+  address?: string;
 
   @property({
-    type: 'date',
+    name: 'phone_number',
+    type: 'string',
+  })
+  phoneNumber?: string;
+
+  @property({
     name: 'created_at',
-    defaultFn: 'now'
+    type: 'date',
+    defaultFn: 'now',
   })
   createdAt?: Date;
 
@@ -33,13 +39,16 @@ export class Users extends Entity {
   })
   updatedAt?: Date;
 
-  constructor(data?: Partial<Users>) {
+
+
+
+  constructor(data?: Partial<CenterBranch>) {
     super(data);
   }
 }
 
-export interface UsersRelations {
+export interface CenterBranchRelations {
   // describe navigational properties here
 }
 
-export type UsersWithRelations = Users & UsersRelations;
+export type CenterBranchWithRelations = CenterBranch & CenterBranchRelations;

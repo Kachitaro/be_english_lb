@@ -1,24 +1,21 @@
 import {
-  Count,
-  CountSchema,
-  Filter,
-  FilterExcludingWhere,
-  repository,
-  Where,
+    Count,
+    CountSchema,
+    Filter,
+    FilterExcludingWhere,
+    repository,
+    Where
 } from '@loopback/repository';
 import {
-  //post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+    del, get,
+    getModelSchemaRef,
+    //post,
+    param, patch,
+    put, requestBody,
+    response
 } from '@loopback/rest';
-import {Users} from '../models';
-import {UsersRepository} from '../repositories';
+import { Users } from '../models';
+import { UsersRepository } from '../repositories';
 
 export class UsersController {
   constructor(
