@@ -1,5 +1,8 @@
 
-import {Entity, model, property } from '@loopback/repository';
+import {Entity, model, property, belongsTo, hasOne} from '@loopback/repository';
+import {Users} from './users.model';
+import {Tuition} from './tuition.model';
+import {CenterBranch} from './center-branch.model';
 
 @model()
 export class Student extends Entity {
@@ -41,20 +44,8 @@ export class Student extends Entity {
   })
   schedule?: string;
 
-  // @property({
-  //   name: 'subjects_id',
-  //   type: 'number',
-  // })
-  // subjectsId?: number;
-
-  // @property({
-  //   name: 'student_id',
-  //   type: 'number',
-  // })
-  // studentId?: number;
-  // @belongsTo(() => Users)
-  // studentId?: number;
-
+  @belongsTo(() => Users, {keyFrom: 'user_id', keyTo: 'users_id'})
+  usersId: number;
 
   @property({
     type: 'date',
@@ -70,6 +61,17 @@ export class Student extends Entity {
     defaultFn: 'now'
   })
   updatedAt?: Date;
+
+  @property({
+    type: 'number',
+  })
+  subjectsId?: number;
+
+  @hasOne(() => Tuition)
+  tuition: Tuition;
+
+  @belongsTo(() => CenterBranch)
+  centerBranchId: number;
 
   constructor(data?: Partial<Student>) {
     super(data);

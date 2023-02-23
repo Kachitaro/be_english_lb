@@ -9,7 +9,11 @@ const config = {
   port: 5432,
   user: 'postgres',
   password: 'postgres123',
-  database: 'manager'
+  database: 'manager',
+  namingConvention: {
+    columns: 'snake_case', // đặt định dạng tên cột ở đây
+    // có thể đặt định dạng cho tên model, relation, index, foreign key cũng tương tự
+  },
 };
 
 // Observe application's life cycle to disconnect the datasource when

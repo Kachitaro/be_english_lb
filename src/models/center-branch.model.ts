@@ -39,9 +39,6 @@ export class CenterBranch extends Entity {
   })
   updatedAt?: Date;
 
-
-
-
   constructor(data?: Partial<CenterBranch>) {
     super(data);
   }

@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Student} from './student.model';
 
 @model()
 export class Subjects extends Entity {
@@ -31,7 +32,9 @@ export class Subjects extends Entity {
   })
   EndAt?: Date;
 
-
+  @hasMany(() => Student)
+  students: Student[];
+  
   @property({
     type: 'date',
     name: 'created_at',

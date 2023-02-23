@@ -22,28 +22,14 @@ export class Tuition extends Entity {
   price?: number;
 
   @property({
-    type:'number'
+    type: 'number'
   })
   payment?: number;
 
   @property({
-    type:'string'
+    type: 'string'
   })
   status?: string;
-
-  // @property({
-  //   type:'number'
-  // })
-  // subjectsId?: number;
-  // @belongsTo(() => Subjects)
-  // subjectsId?: number;
-
-  // @property({
-  //   type:'number'
-  // })
-  // studentId?: number;
-  // @belongsTo(() => Student)
-  // studentId?: number;
 
   @property({
     type: 'date',
@@ -58,6 +44,11 @@ export class Tuition extends Entity {
     defaultFn: 'now'
   })
   updatedAt?: Date;
+
+  @property({
+    type: 'number',
+  })
+  studentId?: number;
 
   constructor(data?: Partial<Tuition>) {
     super(data);
