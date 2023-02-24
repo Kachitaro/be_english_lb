@@ -1,23 +1,38 @@
-import { Entity, model, property } from '@loopback/repository';
+import { Entity, model, property, hasOne} from '@loopback/repository';
+import {Teacher} from './teacher.model';
+import {Student} from './student.model';
+import {Manager} from './manager.model';
 
 @model()
 export class Users extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
-    generated: true,
+    generated: false,
+    defaultFn: 'uuidv4',
   })
-  id?: number;
+  id?: string;
 
   @property({
     type: 'string',
+    required: true,
+    index:{
+      unique: true
+    }
   })
-  username?: string;
+  email?: string;
 
   @property({
     type: 'string',
+    required: true
   })
   password?: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  role?: string;
 
   @property({
     type: 'date',
@@ -32,6 +47,15 @@ export class Users extends Entity {
     defaultFn: 'now'
   })
   updatedAt?: Date;
+
+  @hasOne(() => Teacher)
+  teacher: Teacher;
+
+  @hasOne(() => Student)
+  student: Student;
+
+  @hasOne(() => Manager)
+  manager: Manager;
 
   constructor(data?: Partial<Users>) {
     super(data);

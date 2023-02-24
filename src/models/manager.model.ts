@@ -41,9 +41,19 @@ export class Manager extends Entity {
   })
   address?: string;
 
+
   //
   // @belongsTo(() => Users)
   // managerId?: number;
+  @property({
+    type: 'number',
+  })
+  centerBranchId?: number;
+
+  @property({
+    type: 'string',
+  })
+  usersId?: string;
 
   @property({
     type: 'number',

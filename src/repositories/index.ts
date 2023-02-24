@@ -5,3 +5,4 @@ export * from './center-branch.repository';
 export * from './subjects.repository';
 export * from './teacher.repository';
 export * from './tuition.repository';
+export * from './migrations.repository';

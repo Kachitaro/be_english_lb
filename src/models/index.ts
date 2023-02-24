@@ -5,3 +5,4 @@ export * from './center-branch.model';
 export * from './teacher.model';
 export * from './subjects.model';
 export * from './tuition.model';
+export * from './migrations.model';

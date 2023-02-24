@@ -1,6 +1,5 @@
 
 import {Entity, model, property, belongsTo, hasOne} from '@loopback/repository';
-import {Users} from './users.model';
 import {Tuition} from './tuition.model';
 import {CenterBranch} from './center-branch.model';
 
@@ -44,9 +43,6 @@ export class Student extends Entity {
   })
   schedule?: string;
 
-  @belongsTo(() => Users, {keyFrom: 'user_id', keyTo: 'users_id'})
-  usersId: number;
-
   @property({
     type: 'date',
     name: 'created_at',
@@ -72,6 +68,11 @@ export class Student extends Entity {
 
   @belongsTo(() => CenterBranch)
   centerBranchId: number;
+
+  @property({
+    type: 'number',
+  })
+  usersId?: number;
 
   constructor(data?: Partial<Student>) {
     super(data);

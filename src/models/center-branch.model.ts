@@ -1,4 +1,7 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Student} from './student.model';
+import {Manager} from './manager.model';
+import {Teacher} from './teacher.model';
 
 @model()
 export class CenterBranch extends Entity {
@@ -38,6 +41,15 @@ export class CenterBranch extends Entity {
     defaultFn: 'now'
   })
   updatedAt?: Date;
+
+  @hasMany(() => Student)
+  students: Student[];
+
+  @hasMany(() => Manager)
+  managers: Manager[];
+
+  @hasMany(() => Teacher)
+  teachers: Teacher[];
 
   constructor(data?: Partial<CenterBranch>) {
     super(data);

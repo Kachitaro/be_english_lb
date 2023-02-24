@@ -41,7 +41,7 @@ export class Teacher extends Entity {
   address?: string;
 
   @property({
-    name:'teacher_id',
+    name: 'teacher_id',
     type: 'number',
   })
   teacherId?: number;
@@ -64,6 +64,16 @@ export class Teacher extends Entity {
     defaultFn: 'now'
   })
   updatedAt?: Date;
+
+  @property({
+    type: 'number',
+  })
+  usersId?: number;
+
+  @property({
+    type: 'number',
+  })
+  centerBranchId?: number;
 
   constructor(data?: Partial<Teacher>) {
     super(data);
