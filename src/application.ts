@@ -9,7 +9,9 @@ import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
-
+import {AuthenticationComponent} from '@loopback/authentication';
+import {JWTAuthenticationComponent, UserServiceBindings} from '@loopback/authentication-jwt';
+import { PgDataSource } from './datasources';
 export {ApplicationConfig};
 
 export class BeEnglishLbApplication extends BootMixin(
@@ -40,5 +42,10 @@ export class BeEnglishLbApplication extends BootMixin(
         nested: true,
       },
     };
+    this.component(AuthenticationComponent);
+    // Mount jwt component
+    this.component(JWTAuthenticationComponent);
+    // Bind datasource
+    this.dataSource(PgDataSource, UserServiceBindings.DATASOURCE_NAME);
   }
 }

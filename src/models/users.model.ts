@@ -2,6 +2,7 @@ import { Entity, model, property, hasOne} from '@loopback/repository';
 import {Teacher} from './teacher.model';
 import {Student} from './student.model';
 import {Manager} from './manager.model';
+import {UserCredentials} from '@loopback/authentication-jwt';
 
 @model()
 export class Users extends Entity {
@@ -30,19 +31,24 @@ export class Users extends Entity {
 
   @property({
     type: 'string',
-    required: true,
   })
   role?: string;
 
   @property({
+    type: 'string',
+  })
+  token?: string;
+
+  @hasOne(() => UserCredentials)
+  userCredentials: UserCredentials;
+
+  @property({
     type: 'date',
-    name: 'created_at',
     defaultFn: 'now'
   })
   createdAt?: Date;
 
   @property({
-    name: 'updated_at',
     type: 'date',
     defaultFn: 'now'
   })

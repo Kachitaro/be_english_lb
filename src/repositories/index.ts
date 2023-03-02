@@ -6,3 +6,4 @@ export * from './subjects.repository';
 export * from './teacher.repository';
 export * from './tuition.repository';
 export * from './users.repository';
+export * from './user-credentials.repository';
